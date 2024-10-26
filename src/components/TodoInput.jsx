@@ -9,22 +9,26 @@ export default function TodoInput(props) {
     console.log("Current input value:", e.target.value); // Debugging the input value
   };
 
-  const handleClick = () => {
-    console.log("Todo added:", todoValue); // Debugging the button click
+
+
+  const handleSubmit = (e) =>{
+    e.preventDefault()
     handleAddTodos(todoValue);
-  };
+    setTodoValue('')    
+  }
 
   return (
     <header>
-      <input
+      <form onSubmit={handleSubmit}>    
+        <input
         value={todoValue}
         onChange={handleChange}
         placeholder="Enter todo..."
       />
-      <button onClick={() => {
-      handleClick()
-      setTodoValue("")}}
+      <button type="submit"
       >Add</button>
+      </form>
+      
     </header>
   );
 }
